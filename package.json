@@ -26,7 +26,7 @@
   "devDependencies": {
     "@types/aws-lambda": "8.10.130",
     "serverless": "3.38.0",
-    "serverless-bundle": "6.0.0",
+    "serverless-bundle": "6.1.0",
     "serverless-domain-manager": "7.1.2",
     "typescript": "5.2.2"
   },
