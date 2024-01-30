@@ -2,4 +2,4 @@
 
 ## Reporting a Vulnerability
 
-Please contact security@appvia.io
+Please contact chris@cns.me.uk

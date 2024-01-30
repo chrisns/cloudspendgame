@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/appvia/cloudspendgame.git"
+    "url": "git+https://github.com/chrisns/cloudspendgame.git"
   },
   "author": "Chris Nesbitt-Smith",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/appvia/cloudspendgame/issues"
+    "url": "https://github.com/chrisns/cloudspendgame/issues"
   },
-  "homepage": "https://github.com/appvia/cloudspendgame#readme",
+  "homepage": "https://github.com/chrisns/cloudspendgame#readme",
   "dependencies": {
     "cloud-spend-forecaster": "github:appvia/cloud-spend-forecaster",
     "jsonschema": "^1.4.0"
