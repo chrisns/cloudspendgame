@@ -1,11 +1,11 @@
 service: blackfriday
 
-frameworkVersion: '2'
+frameworkVersion: "3"
 
 useDotenv: true
 plugins:
   - serverless-bundle
-  - serverless-domain-manager
+  # - serverless-domain-manager
 
 provider:
   name: aws
@@ -16,14 +16,14 @@ provider:
   iam:
     role:
       statements:
-        - Effect: 'Allow'
+        - Effect: "Allow"
           Action:
             - dynamodb:PutItem
           Resource:
             - Fn::GetAtt:
                 - scoreTable
                 - Arn
-        - Effect: 'Allow'
+        - Effect: "Allow"
           Action:
             - dynamodb:Scan
           Resource:
@@ -40,7 +40,7 @@ provider:
   httpApi:
     cors:
       allowedOrigins:
-        - '*'
+        - "*"
       allowedMethods:
         - GET
         - POST
@@ -66,7 +66,7 @@ functions:
       - httpApi:
           path: /
           method: POST
-  
+
   scoreboard:
     handler: scoreboard.scoreboard
     timeout: 12
@@ -77,17 +77,17 @@ functions:
 
 package:
   include:
-    - 'docs/**'
+    - "docs/**"
   exclude:
-    - 'tests/**'
-    - '*.md'
-    - 'wallaby.js'
-    - 'jest.config.js'
-    - 'package-lock.json'
+    - "tests/**"
+    - "*.md"
+    - "wallaby.js"
+    - "jest.config.js"
+    - "package-lock.json"
     # - "node_modules/aws-sdk/**"
-    - 'coverage/**'
-    - '.*'
-    - '.*/**'
+    - "coverage/**"
+    - ".*"
+    - ".*/**"
 
 resources:
   Resources:
@@ -104,7 +104,7 @@ resources:
           - AttributeName: id
             AttributeType: S
           - AttributeName: score
-            AttributeType: 'N'
+            AttributeType: "N"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 2
@@ -116,8 +116,8 @@ custom:
 
     sourcemaps: false
     copyFiles:
-      - from: 'docs/*'
-        to: './'
+      - from: "docs/*"
+        to: "./"
 
   dynamodb:
     noStart: true
@@ -131,12 +131,12 @@ custom:
       migrate: true
 
   customDomain:
-    domainName: blackfriday.sa-team.teams.kore.appvia.io
+    domainName: blackfriday.cns.me
     stage: production
     basePath: ""
-    certificateName: sa-team.teams.kore.appvia.io
-    createRoute53Record: true
-    endpointType: 'regional'
+    # certificateName: blackfriday.cns.me
+    # createRoute53Record: true
+    endpointType: "regional"
     securityPolicy: tls_1_2
     apiType: http
     autoDomain: false

@@ -29,21 +29,22 @@ $("button").click(() => {
   $("button .spinner-border").css("display", "inline-block")
   $("div[data-schemapath='root.player']").slideDown()
   $.post({
-    url: 'https://blackfriday.sa-team.teams.kore.appvia.io',
+    url: "https://ckehsvqa1k.execute-api.eu-west-2.amazonaws.com",
     data: JSON.stringify(editor.getValue()),
     dataType: "json",
-    contentType: 'application/json',
-
+    contentType: "application/json",
   })
-    .catch(error => {
-      alert("Unable to fit minimum number of pods specified on the minimum number of nodes specified")
+    .catch((error) => {
+      alert(
+        "Unable to fit minimum number of pods specified on the minimum number of nodes specified"
+      );
     })
-    .then(response => {
-      $("button").attr("disabled", false)
-      $("div.score").show()
-      $("button .spinner-border").hide()
-      d3GUI(response)
-    })
+    .then((response) => {
+      $("button").attr("disabled", false);
+      $("div.score").show();
+      $("button .spinner-border").hide();
+      d3GUI(response);
+    });
 })
 
 $("#front").click(() => {
