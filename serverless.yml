@@ -5,7 +5,7 @@ frameworkVersion: "3"
 useDotenv: true
 plugins:
   - serverless-bundle
-  # - serverless-domain-manager
+  - serverless-domain-manager
 
 provider:
   name: aws
@@ -132,11 +132,11 @@ custom:
 
   customDomain:
     domainName: blackfriday.cns.me
-    stage: production
+    stage: $default
     basePath: ""
-    # certificateName: blackfriday.cns.me
-    # createRoute53Record: true
+    certificateName: blackfriday.cns.me
+    createRoute53Record: false
     endpointType: "regional"
     securityPolicy: tls_1_2
     apiType: http
-    autoDomain: false
+    autoDomain: true

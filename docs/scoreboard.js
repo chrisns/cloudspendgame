@@ -1,6 +1,6 @@
 const scoreboard = () =>
   $.get({
-    url: "https://ckehsvqa1k.execute-api.eu-west-2.amazonaws.com/scoreboard",
+    url: "https://blackfriday.cns.me/scoreboard",
     contentType: "application/json",
   }).then((response) => {
     $("#scoretable tr").not(":eq(0)").remove();

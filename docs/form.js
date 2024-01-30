@@ -29,7 +29,7 @@ $("button").click(() => {
   $("button .spinner-border").css("display", "inline-block")
   $("div[data-schemapath='root.player']").slideDown()
   $.post({
-    url: "https://ckehsvqa1k.execute-api.eu-west-2.amazonaws.com",
+    url: "https://blackfriday.cns.me",
     data: JSON.stringify(editor.getValue()),
     dataType: "json",
     contentType: "application/json",
