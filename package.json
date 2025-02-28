@@ -28,7 +28,7 @@
     "serverless": "3.40.0",
     "serverless-bundle": "6.3.1",
     "serverless-domain-manager": "8.0.0",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "optionalDependencies": {
     "aws-sdk": "^2.1070.0"
