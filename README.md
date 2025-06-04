@@ -10,3 +10,11 @@ Or watch our video about it[![Video](https://img.youtube.com/vi/Ij7IKrSFqas/0.jp
 npm i
 SLS_DEBUG=* AWS_REGION=eu-west-2 aws-vault exec admin --no-session -- serverless deploy
 ```
+
+# tests
+
+Run unit tests with Jest:
+
+```bash
+npm test
+```
