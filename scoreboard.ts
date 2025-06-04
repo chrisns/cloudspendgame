@@ -19,7 +19,7 @@ export async function scoreboard (
       })
       .promise()
   ).Items.filter(item => item.score > 0).sort((a, b) =>
-    a.score > b.score ? -1 : 0
+    a.score > b.score ? -1 : a.score < b.score ? 1 : 0
   )
 
   const unique_scores = []
