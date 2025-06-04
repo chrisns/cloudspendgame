@@ -7,27 +7,34 @@ import {
   APIGatewayProxyEventV2
 } from 'aws-lambda'
 
+interface ScoreEntry {
+  handle: string
+  score: number
+}
+
 export async function scoreboard (
   event: APIGatewayProxyEventV2,
   context: Context
 ): Promise<APIGatewayProxyResultV2> {
-  const scores = (
+  const items = (
     await dynamoDb
       .scan({
         TableName,
         ProjectionExpression: 'handle, score'
       })
       .promise()
-  ).Items.filter(item => item.score > 0).sort((a, b) =>
-    a.score > b.score ? -1 : 0
-  )
+  ).Items as ScoreEntry[] || []
 
-  const unique_scores = []
+  const scores: ScoreEntry[] = items
+    .filter(item => item.score > 0)
+    .sort((a, b) => (a.score > b.score ? -1 : 0))
+
+  const uniqueScores: ScoreEntry[] = []
   const map = new Map()
   for (const item of scores) {
     if (!map.has(JSON.stringify(item))) {
       map.set(JSON.stringify(item), true)
-      unique_scores.push(item)
+      uniqueScores.push(item)
     }
   }
 
@@ -36,6 +43,6 @@ export async function scoreboard (
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(unique_scores)
+    body: JSON.stringify(uniqueScores)
   }
 }
