@@ -2,7 +2,7 @@
 
 This is the game you can play on https://blackfriday.cns.me/
 
-Or watch our video about it[![Video](https://img.youtube.com/vi/Ij7IKrSFqas/0.jpg)](https://www.youtube.com/watch?v=Ij7IKrSFqas)
+Or watch our video about it [![Video](https://img.youtube.com/vi/Ij7IKrSFqas/0.jpg)](https://www.youtube.com/watch?v=Ij7IKrSFqas)
 
 # deploy
 
