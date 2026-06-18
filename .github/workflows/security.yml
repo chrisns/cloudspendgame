@@ -7,7 +7,7 @@ on:
 jobs:
   scan:
     name: Security Scan
-    uses: chrisns/.github/.github/workflows/security-scan.yml@9a76b52799bac90bb33cf538b3a7b24fbf9a88ae # main
+    uses: chrisns/.github/.github/workflows/security-scan.yml@85e2543146314a56b332bcd6d9b236294595af79 # main
     permissions:
       security-events: write
       statuses: write
