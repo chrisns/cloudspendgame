@@ -1,0 +1,35 @@
+diff --git a/node_modules/serverless-domain-manager/dist/src/index.js b/node_modules/serverless-domain-manager/dist/src/index.js
+index be55d3c..30ffb8d 100644
+--- a/node_modules/serverless-domain-manager/dist/src/index.js
++++ b/node_modules/serverless-domain-manager/dist/src/index.js
+@@ -93,7 +93,8 @@ class ServerlessCustomDomain {
+                     if (error.message.includes("Could not load credentials from any providers")) {
+                         try {
+                             if (typeof awsProvider.getCredentials === "function") {
+-                                globals_1.default.credentials = awsProvider.getCredentials();
++                                const legacyResult = awsProvider.getCredentials();
++                                globals_1.default.credentials = (legacyResult && legacyResult.credentials) || legacyResult;
+                                 yield this.initAWSResources();
+                             }
+                         }
+@@ -199,9 +200,17 @@ class ServerlessCustomDomain {
+                 return;
+             }
+             try {
+-                globals_1.default.credentials = awsProvider && typeof awsProvider.getCredentials === "function"
+-                    ? awsProvider.getCredentials()
+-                    : null;
++                if (awsProvider && typeof awsProvider.getCredentials === "function") {
++                    const legacyResult = awsProvider.getCredentials();
++                    // osls v3's getCredentials() returns { credentials: <AWS SDK v2 Credentials>, region }
++                    // rather than a flat, SDK v3-shaped {accessKeyId, secretAccessKey, sessionToken}.
++                    // Passing the wrapper object straight through makes the SDK v3 API Gateway
++                    // client reject it with "Resolved credential object is not valid".
++                    globals_1.default.credentials = (legacyResult && legacyResult.credentials) || legacyResult;
++                }
++                else {
++                    globals_1.default.credentials = null;
++                }
+             }
+             catch (error) {
+                 logging_1.default.logWarning(`Failed to resolve credentials via getCredentials(); falling back to the AWS SDK v3 default chain: ${error.message}`);
